@@ -12,7 +12,7 @@ from core_logger import get_logger
 
 from .errors import ValidationError
 
-logger = get_logger("analytics-service")
+logger = get_logger("analytics-service", tier="infrastructure")
 
 VALID_EVENT_TYPES = {"page_view", "click", "purchase", "signup", "logout"}
 
