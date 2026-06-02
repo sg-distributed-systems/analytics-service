@@ -39,3 +39,5 @@ Initializes a correlation ID from the `CORRELATION_ID` environment variable or g
 ```bash
 uvicorn src.analytics_service.app:app --host 0.0.0.0 --port 8008
 ```
+
+<!-- Testing SCIP indexing workflow -->
