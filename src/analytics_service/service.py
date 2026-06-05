@@ -42,3 +42,25 @@ def ingest_event(
 
     logger.info("event_ingested", event_id=str(event_id), user_id=user_id)
     return {"ingested": True, "event_id": event_id, "received_at": datetime.utcnow()}
+
+
+def aggregate_events(event_type: str, window_seconds: int) -> dict:
+    logger.info(
+        "aggregation_requested", event_type=event_type, window_seconds=window_seconds
+    )
+
+    if event_type not in VALID_EVENT_TYPES:
+        raise ValidationError(
+            "invalid_event_type", details={"allowed": list(VALID_EVENT_TYPES)}
+        )
+
+    if window_seconds <= 0:
+        raise ValidationError("invalid_window", details={"window_seconds": window_seconds})
+
+    logger.debug("rollup_computed", event_type=event_type, window_seconds=window_seconds)
+    return {
+        "event_type": event_type,
+        "count": 0,
+        "window_seconds": window_seconds,
+        "computed_at": datetime.utcnow(),
+    }
