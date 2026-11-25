@@ -8,11 +8,11 @@ server-side timestamps, and prepares them for downstream processing and storage.
 from datetime import datetime
 from uuid import UUID
 
-from core_logger import get_logger
+from core_logger import Tier, get_logger
 
 from .errors import ValidationError
 
-logger = get_logger("analytics-service")
+logger = get_logger("analytics-service", tier=Tier.BUSINESS)
 
 VALID_EVENT_TYPES = {"page_view", "click", "purchase", "signup", "logout"}
 
